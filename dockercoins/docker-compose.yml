@@ -1,26 +1,38 @@
-version: "2"
+version: "3"
 
 services:
   rng:
-    build: rng
+    image: rng
     ports:
     - "8001:80"
 
   hasher:
-    build: hasher
+    image: hasher
     ports:
     - "8002:80"
 
   webui:
-    build: webui
+    image: webui
     ports:
     - "8000:80"
     volumes:
     - "./webui/files/:/files/"
 
+  worker:
+    image: worker
+
   redis:
     image: redis
 
-  worker:
-    build: worker
+    #registry:
+    #image: registry
+    #ports:
+    #  - "5000:5000"
+
+  debug:
+    image: nicolaka/netshoot
+
+networks:
+  default:
+    driver: overlay
 
