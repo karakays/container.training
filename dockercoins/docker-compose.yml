@@ -2,24 +2,24 @@ version: "3"
 
 services:
   rng:
-    image: rng
+    image: ${REGISTRY}/rng:${TAG-latest}
     ports:
     - "8001:80"
 
   hasher:
-    image: hasher
+    image: ${REGISTRY}/hasher:${TAG-latest}
     ports:
     - "8002:80"
 
   webui:
-    image: webui
+    image: ${REGISTRY}/webui:${TAG-latest}
     ports:
     - "8000:80"
     volumes:
     - "./webui/files/:/files/"
 
   worker:
-    image: worker
+    image: ${REGISTRY}/worker:${TAG-latest}
 
   redis:
     image: redis
